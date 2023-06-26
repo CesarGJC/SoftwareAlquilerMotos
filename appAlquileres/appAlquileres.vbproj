@@ -77,10 +77,28 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EditarTipoMoto.Designer.vb">
+      <DependentUpon>EditarTipoMoto.vb</DependentUpon>
+    </Compile>
+    <Compile Include="EditarTipoMoto.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="IndiceAlquieres.Designer.vb">
       <DependentUpon>IndiceAlquieres.vb</DependentUpon>
     </Compile>
     <Compile Include="IndiceAlquieres.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IndiceMotos.Designer.vb">
+      <DependentUpon>IndiceMotos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="IndiceMotos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.vb">
+      <DependentUpon>Login.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Login.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Menú.vb">
@@ -118,6 +136,18 @@
     <Compile Include="RegistrarCliente.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="RegistrarMoto.Designer.vb">
+      <DependentUpon>RegistrarMoto.vb</DependentUpon>
+    </Compile>
+    <Compile Include="RegistrarMoto.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportesClientes.Designer.vb">
+      <DependentUpon>ReportesClientes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportesClientes.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="SeleccionarCliente.Designer.vb">
       <DependentUpon>SeleccionarCliente.vb</DependentUpon>
     </Compile>
@@ -132,8 +162,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="EditarTipoMoto.resx">
+      <DependentUpon>EditarTipoMoto.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="IndiceAlquieres.resx">
       <DependentUpon>IndiceAlquieres.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IndiceMotos.resx">
+      <DependentUpon>IndiceMotos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListaClientes.rdlc" />
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menú.resx">
       <DependentUpon>Menú.vb</DependentUpon>
@@ -150,6 +190,12 @@
     <EmbeddedResource Include="RegistrarCliente.resx">
       <DependentUpon>RegistrarCliente.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="RegistrarMoto.resx">
+      <DependentUpon>RegistrarMoto.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportesClientes.resx">
+      <DependentUpon>ReportesClientes.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SeleccionarCliente.resx">
       <DependentUpon>SeleccionarCliente.vb</DependentUpon>
     </EmbeddedResource>
@@ -162,6 +208,19 @@
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
+    <None Include="My Project\DataSources\cmpAlquileres.BD+ClientesDataTable.datasource" />
+    <None Include="My Project\DataSources\cmpAlquileres.BDTableAdapters.AlquileresTableAdapter.datasource" />
+    <None Include="My Project\DataSources\cmpAlquileres.BDTableAdapters.ClientesTableAdapter.datasource" />
+    <None Include="My Project\DataSources\cmpAlquileres.BDTableAdapters.MotosTableAdapter.datasource" />
+    <None Include="My Project\DataSources\cmpAlquileres.BDTableAdapters.NacionalidadesTableAdapter.datasource" />
+    <None Include="My Project\DataSources\cmpAlquileres.BDTableAdapters.TableAdapterManager+UpdateOrderOption.datasource" />
+    <None Include="My Project\DataSources\cmpAlquileres.BDTableAdapters.TableAdapterManager.datasource" />
+    <None Include="My Project\DataSources\cmpAlquileres.BDTableAdapters.TiposMotosTableAdapter.datasource" />
+    <None Include="My Project\DataSources\cmpAlquileres.BDTableAdapters.TotalPeriodoTableAdapter.datasource" />
+    <None Include="My Project\DataSources\cmpAlquileres.BDTableAdapters.UsuariosTableAdapter.datasource" />
+    <None Include="My Project\DataSources\cmpAlquileres.BDTableAdapters.vAlquileresTableAdapter.datasource" />
+    <None Include="My Project\DataSources\cmpAlquileres.BDTableAdapters.VClienteTableAdapter.datasource" />
+    <None Include="My Project\DataSources\cmpAlquileres.BDTableAdapters.VMotosTableAdapter.datasource" />
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <CustomToolNamespace>My</CustomToolNamespace>

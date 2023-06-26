@@ -28,4 +28,20 @@
 
         End Try
     End Sub
+    Public Sub CargarClientes(ds As BD.VClienteDataTable)
+        Try
+            Dim adap As New BDTableAdapters.VClienteTableAdapter
+            adap.Fill(ds)
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Public Sub Listar(ds As BD.ClientesDataTable)
+        Try
+            Dim adap As New cmpAlquileres.BDTableAdapters.ClientesTableAdapter
+            adap.Fill(ds)
+        Catch ex As Exception
+
+        End Try
+    End Sub
 End Class

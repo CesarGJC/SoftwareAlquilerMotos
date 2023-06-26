@@ -47,4 +47,8 @@
             End If
         Next
     End Sub
+
+    Private Sub cbNacionalidad_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbNacionalidad.SelectedIndexChanged
+
+    End Sub
 End Class

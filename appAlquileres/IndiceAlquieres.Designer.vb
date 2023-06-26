@@ -24,9 +24,10 @@ Partial Class IndiceAlquieres
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(IndiceAlquieres))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BunifuElipse1 = New Bunifu.Framework.UI.BunifuElipse(Me.components)
         Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
         Me.DateTimePicker2 = New System.Windows.Forms.DateTimePicker()
@@ -36,8 +37,11 @@ Partial Class IndiceAlquieres
         Me.txtTotalIngreso = New System.Windows.Forms.TextBox()
         Me.BunifuImageButton1 = New Bunifu.Framework.UI.BunifuImageButton()
         Me.BunifuImageButton2 = New Bunifu.Framework.UI.BunifuImageButton()
+        Me.rbPlaca = New System.Windows.Forms.RadioButton()
+        Me.rbNDI = New System.Windows.Forms.RadioButton()
+        Me.txtPlaca = New System.Windows.Forms.TextBox()
+        Me.txtNDI = New System.Windows.Forms.TextBox()
         Me.IndiceRegistrosAlquileres = New System.Windows.Forms.DataGridView()
-        Me.Bd1 = New cmpAlquileres.BD()
         Me.AlquilerIDDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FechaDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.HoraInicioDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -57,9 +61,13 @@ Partial Class IndiceAlquieres
         Me.ModeloDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DetalleDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TipoMotoDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.FinalizarAlquilerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Bd1 = New cmpAlquileres.BD()
         CType(Me.BunifuImageButton1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BunifuImageButton2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.IndiceRegistrosAlquileres, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.Bd1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -70,14 +78,14 @@ Partial Class IndiceAlquieres
         '
         'DateTimePicker1
         '
-        Me.DateTimePicker1.Location = New System.Drawing.Point(62, 29)
+        Me.DateTimePicker1.Location = New System.Drawing.Point(12, 29)
         Me.DateTimePicker1.Name = "DateTimePicker1"
         Me.DateTimePicker1.Size = New System.Drawing.Size(211, 20)
         Me.DateTimePicker1.TabIndex = 1
         '
         'DateTimePicker2
         '
-        Me.DateTimePicker2.Location = New System.Drawing.Point(353, 29)
+        Me.DateTimePicker2.Location = New System.Drawing.Point(229, 29)
         Me.DateTimePicker2.Name = "DateTimePicker2"
         Me.DateTimePicker2.Size = New System.Drawing.Size(213, 20)
         Me.DateTimePicker2.TabIndex = 2
@@ -86,7 +94,7 @@ Partial Class IndiceAlquieres
         '
         Me.Label1.AutoSize = True
         Me.Label1.ForeColor = System.Drawing.Color.White
-        Me.Label1.Location = New System.Drawing.Point(15, 29)
+        Me.Label1.Location = New System.Drawing.Point(12, 12)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(41, 13)
         Me.Label1.TabIndex = 3
@@ -96,7 +104,7 @@ Partial Class IndiceAlquieres
         '
         Me.Label2.AutoSize = True
         Me.Label2.ForeColor = System.Drawing.Color.White
-        Me.Label2.Location = New System.Drawing.Point(294, 29)
+        Me.Label2.Location = New System.Drawing.Point(228, 12)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(38, 13)
         Me.Label2.TabIndex = 4
@@ -127,7 +135,7 @@ Partial Class IndiceAlquieres
         Me.BunifuImageButton1.BackColor = System.Drawing.Color.Transparent
         Me.BunifuImageButton1.Image = CType(resources.GetObject("BunifuImageButton1.Image"), System.Drawing.Image)
         Me.BunifuImageButton1.ImageActive = Nothing
-        Me.BunifuImageButton1.Location = New System.Drawing.Point(578, 19)
+        Me.BunifuImageButton1.Location = New System.Drawing.Point(450, 19)
         Me.BunifuImageButton1.Name = "BunifuImageButton1"
         Me.BunifuImageButton1.Size = New System.Drawing.Size(30, 30)
         Me.BunifuImageButton1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
@@ -140,13 +148,53 @@ Partial Class IndiceAlquieres
         Me.BunifuImageButton2.BackColor = System.Drawing.Color.Transparent
         Me.BunifuImageButton2.Image = CType(resources.GetObject("BunifuImageButton2.Image"), System.Drawing.Image)
         Me.BunifuImageButton2.ImageActive = Nothing
-        Me.BunifuImageButton2.Location = New System.Drawing.Point(614, 19)
+        Me.BunifuImageButton2.Location = New System.Drawing.Point(486, 19)
         Me.BunifuImageButton2.Name = "BunifuImageButton2"
         Me.BunifuImageButton2.Size = New System.Drawing.Size(30, 30)
         Me.BunifuImageButton2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.BunifuImageButton2.TabIndex = 8
         Me.BunifuImageButton2.TabStop = False
         Me.BunifuImageButton2.Zoom = 10
+        '
+        'rbPlaca
+        '
+        Me.rbPlaca.AutoSize = True
+        Me.rbPlaca.ForeColor = System.Drawing.Color.AliceBlue
+        Me.rbPlaca.Location = New System.Drawing.Point(525, 9)
+        Me.rbPlaca.Name = "rbPlaca"
+        Me.rbPlaca.Size = New System.Drawing.Size(74, 17)
+        Me.rbPlaca.TabIndex = 11
+        Me.rbPlaca.TabStop = True
+        Me.rbPlaca.Text = "Por Placa:"
+        Me.rbPlaca.UseVisualStyleBackColor = True
+        '
+        'rbNDI
+        '
+        Me.rbNDI.AutoSize = True
+        Me.rbNDI.ForeColor = System.Drawing.Color.AliceBlue
+        Me.rbNDI.Location = New System.Drawing.Point(525, 29)
+        Me.rbNDI.Name = "rbNDI"
+        Me.rbNDI.Size = New System.Drawing.Size(66, 17)
+        Me.rbNDI.TabIndex = 12
+        Me.rbNDI.TabStop = True
+        Me.rbNDI.Text = "Por NDI:"
+        Me.rbNDI.UseVisualStyleBackColor = True
+        '
+        'txtPlaca
+        '
+        Me.txtPlaca.Location = New System.Drawing.Point(605, 5)
+        Me.txtPlaca.Name = "txtPlaca"
+        Me.txtPlaca.Size = New System.Drawing.Size(88, 20)
+        Me.txtPlaca.TabIndex = 13
+        Me.txtPlaca.Visible = False
+        '
+        'txtNDI
+        '
+        Me.txtNDI.Location = New System.Drawing.Point(605, 28)
+        Me.txtNDI.Name = "txtNDI"
+        Me.txtNDI.Size = New System.Drawing.Size(88, 20)
+        Me.txtNDI.TabIndex = 14
+        Me.txtNDI.Visible = False
         '
         'IndiceRegistrosAlquileres
         '
@@ -158,6 +206,7 @@ Partial Class IndiceAlquieres
         Me.IndiceRegistrosAlquileres.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells
         Me.IndiceRegistrosAlquileres.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.IndiceRegistrosAlquileres.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.AlquilerIDDataGridViewTextBoxColumn, Me.FechaDataGridViewTextBoxColumn, Me.HoraInicioDataGridViewTextBoxColumn, Me.HoraFinDataGridViewTextBoxColumn, Me.CantidadHorasDataGridViewTextBoxColumn, Me.MontoDataGridViewTextBoxColumn, Me.EstadoDataGridViewTextBoxColumn, Me.NDIDataGridViewTextBoxColumn, Me.NombresDataGridViewTextBoxColumn, Me.ApellidoPaternoDataGridViewTextBoxColumn, Me.ApellidoMaternoDataGridViewTextBoxColumn, Me.NacionalidadDataGridViewTextBoxColumn, Me.MotoIDDataGridViewTextBoxColumn, Me.PlacaDataGridViewTextBoxColumn, Me.ColorDataGridViewTextBoxColumn, Me.TipoDataGridViewTextBoxColumn, Me.ModeloDataGridViewTextBoxColumn, Me.DetalleDataGridViewTextBoxColumn, Me.TipoMotoDataGridViewTextBoxColumn})
+        Me.IndiceRegistrosAlquileres.ContextMenuStrip = Me.ContextMenuStrip1
         Me.IndiceRegistrosAlquileres.DataMember = "vAlquileres"
         Me.IndiceRegistrosAlquileres.DataSource = Me.Bd1
         Me.IndiceRegistrosAlquileres.Location = New System.Drawing.Point(12, 55)
@@ -165,11 +214,6 @@ Partial Class IndiceAlquieres
         Me.IndiceRegistrosAlquileres.ReadOnly = True
         Me.IndiceRegistrosAlquileres.Size = New System.Drawing.Size(776, 325)
         Me.IndiceRegistrosAlquileres.TabIndex = 0
-        '
-        'Bd1
-        '
-        Me.Bd1.DataSetName = "BD"
-        Me.Bd1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'AlquilerIDDataGridViewTextBoxColumn
         '
@@ -191,9 +235,9 @@ Partial Class IndiceAlquieres
         'HoraInicioDataGridViewTextBoxColumn
         '
         Me.HoraInicioDataGridViewTextBoxColumn.DataPropertyName = "HoraInicio"
-        DataGridViewCellStyle1.Format = "t"
-        DataGridViewCellStyle1.NullValue = Nothing
-        Me.HoraInicioDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle5.Format = "t"
+        DataGridViewCellStyle5.NullValue = Nothing
+        Me.HoraInicioDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle5
         Me.HoraInicioDataGridViewTextBoxColumn.HeaderText = "HoraInicio"
         Me.HoraInicioDataGridViewTextBoxColumn.Name = "HoraInicioDataGridViewTextBoxColumn"
         Me.HoraInicioDataGridViewTextBoxColumn.ReadOnly = True
@@ -202,9 +246,9 @@ Partial Class IndiceAlquieres
         'HoraFinDataGridViewTextBoxColumn
         '
         Me.HoraFinDataGridViewTextBoxColumn.DataPropertyName = "HoraFin"
-        DataGridViewCellStyle2.Format = "t"
-        DataGridViewCellStyle2.NullValue = Nothing
-        Me.HoraFinDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle6.Format = "t"
+        DataGridViewCellStyle6.NullValue = Nothing
+        Me.HoraFinDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle6
         Me.HoraFinDataGridViewTextBoxColumn.HeaderText = "HoraFin"
         Me.HoraFinDataGridViewTextBoxColumn.Name = "HoraFinDataGridViewTextBoxColumn"
         Me.HoraFinDataGridViewTextBoxColumn.ReadOnly = True
@@ -223,9 +267,9 @@ Partial Class IndiceAlquieres
         'MontoDataGridViewTextBoxColumn
         '
         Me.MontoDataGridViewTextBoxColumn.DataPropertyName = "Monto"
-        DataGridViewCellStyle3.Format = "N2"
-        DataGridViewCellStyle3.NullValue = Nothing
-        Me.MontoDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle7.Format = "N2"
+        DataGridViewCellStyle7.NullValue = Nothing
+        Me.MontoDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle7
         Me.MontoDataGridViewTextBoxColumn.HeaderText = "Monto"
         Me.MontoDataGridViewTextBoxColumn.Name = "MontoDataGridViewTextBoxColumn"
         Me.MontoDataGridViewTextBoxColumn.ReadOnly = True
@@ -234,6 +278,8 @@ Partial Class IndiceAlquieres
         'EstadoDataGridViewTextBoxColumn
         '
         Me.EstadoDataGridViewTextBoxColumn.DataPropertyName = "Estado"
+        DataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.EstadoDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle8
         Me.EstadoDataGridViewTextBoxColumn.HeaderText = "Estado"
         Me.EstadoDataGridViewTextBoxColumn.Name = "EstadoDataGridViewTextBoxColumn"
         Me.EstadoDataGridViewTextBoxColumn.ReadOnly = True
@@ -345,12 +391,33 @@ Partial Class IndiceAlquieres
         Me.TipoMotoDataGridViewTextBoxColumn.Visible = False
         Me.TipoMotoDataGridViewTextBoxColumn.Width = 77
         '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FinalizarAlquilerToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 48)
+        '
+        'FinalizarAlquilerToolStripMenuItem
+        '
+        Me.FinalizarAlquilerToolStripMenuItem.Name = "FinalizarAlquilerToolStripMenuItem"
+        Me.FinalizarAlquilerToolStripMenuItem.Size = New System.Drawing.Size(161, 22)
+        Me.FinalizarAlquilerToolStripMenuItem.Text = "Finalizar Alquiler"
+        '
+        'Bd1
+        '
+        Me.Bd1.DataSetName = "BD"
+        Me.Bd1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
         'IndiceAlquieres
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(41, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(800, 418)
+        Me.Controls.Add(Me.txtNDI)
+        Me.Controls.Add(Me.txtPlaca)
+        Me.Controls.Add(Me.rbNDI)
+        Me.Controls.Add(Me.rbPlaca)
         Me.Controls.Add(Me.BunifuImageButton2)
         Me.Controls.Add(Me.BunifuImageButton1)
         Me.Controls.Add(Me.txtTotalIngreso)
@@ -366,6 +433,7 @@ Partial Class IndiceAlquieres
         CType(Me.BunifuImageButton1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BunifuImageButton2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.IndiceRegistrosAlquileres, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.Bd1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -402,4 +470,10 @@ Partial Class IndiceAlquieres
     Friend WithEvents ModeloDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents DetalleDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents TipoMotoDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents txtPlaca As TextBox
+    Friend WithEvents rbNDI As RadioButton
+    Friend WithEvents rbPlaca As RadioButton
+    Friend WithEvents txtNDI As TextBox
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents FinalizarAlquilerToolStripMenuItem As ToolStripMenuItem
 End Class

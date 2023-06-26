@@ -87,5 +87,13 @@
         AbrirFormulario(New IndiceAlquieres)
     End Sub
 
+    Private Sub BunifuFlatButton1_Click_1(sender As Object, e As EventArgs) Handles BunifuFlatButton1.Click
+        AbrirFormulario(New IndiceMotos)
+    End Sub
+
+    Private Sub BunifuFlatButton2_Click(sender As Object, e As EventArgs) Handles BunifuFlatButton2.Click
+        AbrirFormulario(New ReportesClientes)
+    End Sub
+
     Dim sw, sh As Integer
 End Class

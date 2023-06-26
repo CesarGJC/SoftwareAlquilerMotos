@@ -126,7 +126,7 @@ SELECT NDI, Nombres, ApellidoPaterno, ApellidoMaterno, Telefono, Direccion, Naci
               <Mapping SourceColumn="NacionalidadID" DataSetColumn="NacionalidadID" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="DBAlquileresConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="EditarCliente" Modifier="Public" Name="EditarCliente" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="EditarCliente">
+              <DbSource ConnectionRef="DBAlquileresConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="EditarCliente" Modifier="Public" Name="EditarCliente" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="EditarCliente">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>UPDATE [dbo].[Clientes] SET [NDI] = @NDI, [Nombres] = @Nombres, [ApellidoPaterno] = @ApellidoPaterno, [ApellidoMaterno] = @ApellidoMaterno, [Telefono] = @Telefono, [Direccion] = @Direccion, [NacionalidadID] = @NacionalidadID WHERE (([NDI] = @Original_NDI) AND ([Nombres] = @Original_Nombres) AND ([ApellidoPaterno] = @Original_ApellidoPaterno) AND ([ApellidoMaterno] = @Original_ApellidoMaterno) AND ([Telefono] = @Original_Telefono) AND ((@IsNull_NacionalidadID = 1 AND [NacionalidadID] IS NULL) OR ([NacionalidadID] = @Original_NacionalidadID)));
@@ -149,7 +149,7 @@ SELECT NDI, Nombres, ApellidoPaterno, ApellidoMaterno, Telefono, Direccion, Naci
                   </DbCommand>
                 </UpdateCommand>
               </DbSource>
-              <DbSource ConnectionRef="DBAlquileresConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="EliminarCliente" Modifier="Public" Name="EliminarCliente" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="EliminarCliente">
+              <DbSource ConnectionRef="DBAlquileresConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="EliminarCliente" Modifier="Public" Name="EliminarCliente" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="EliminarCliente">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>DELETE FROM Clientes
@@ -160,7 +160,7 @@ WHERE        (NDI = @NDI)</CommandText>
                   </DbCommand>
                 </DeleteCommand>
               </DbSource>
-              <DbSource ConnectionRef="DBAlquileresConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="InsertarCliente" Modifier="Public" Name="InsertarCliente" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="InsertarCliente">
+              <DbSource ConnectionRef="DBAlquileresConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="InsertarCliente" Modifier="Public" Name="InsertarCliente" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="InsertarCliente">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>INSERT INTO [dbo].[Clientes] ([NDI], [Nombres], [ApellidoPaterno], [ApellidoMaterno], [Telefono], [Direccion], [NacionalidadID]) VALUES (@NDI, @Nombres, @ApellidoPaterno, @ApellidoMaterno, @Telefono, @Direccion, @NacionalidadID);
@@ -254,8 +254,8 @@ WHERE
                 </DeleteCommand>
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>INSERT INTO [Motos] ([Placa], [Color], [Tipo], [Modelo], [Detalle], [Tarifa], [Estado]) VALUES (@Placa, @Color, @Tipo, @Modelo, @Detalle, @Tarifa, @Estado);
-SELECT MotoID, Placa, Color, Tipo, Modelo, Detalle, Tarifa, Estado FROM Motos WHERE (MotoID = SCOPE_IDENTITY())</CommandText>
+                    <CommandText>INSERT INTO [Motos] ([Placa], [Color], [Tipo], [Modelo], [Detalle], [Tarifa], [Estado], [Foto]) VALUES (@Placa, @Color, @Tipo, @Modelo, @Detalle, @Tarifa, @Estado, @Foto);
+SELECT MotoID, Placa, Color, Tipo, Modelo, Detalle, Tarifa, Estado, Foto FROM Motos WHERE (MotoID = SCOPE_IDENTITY())</CommandText>
                     <Parameters>
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Placa" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Placa" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Color" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Color" SourceColumnNullMapping="false" SourceVersion="Current" />
@@ -264,20 +264,21 @@ SELECT MotoID, Placa, Color, Tipo, Modelo, Detalle, Tarifa, Estado FROM Motos WH
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Detalle" Precision="0" ProviderType="Text" Scale="0" Size="0" SourceColumn="Detalle" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Currency" Direction="Input" ParameterName="@Tarifa" Precision="0" ProviderType="Money" Scale="0" Size="0" SourceColumn="Tarifa" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Estado" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Estado" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Binary" Direction="Input" ParameterName="@Foto" Precision="0" ProviderType="Image" Scale="0" Size="0" SourceColumn="Foto" SourceColumnNullMapping="false" SourceVersion="Current" />
                     </Parameters>
                   </DbCommand>
                 </InsertCommand>
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        MotoID, Placa, Color, Tipo, Modelo, Detalle, Tarifa, Estado
+                    <CommandText>SELECT        MotoID, Placa, Color, Tipo, Modelo, Detalle, Tarifa, Estado, Foto
 FROM            Motos</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>UPDATE [Motos] SET [Placa] = @Placa, [Color] = @Color, [Tipo] = @Tipo, [Modelo] = @Modelo, [Detalle] = @Detalle, [Tarifa] = @Tarifa, [Estado] = @Estado WHERE (([MotoID] = @Original_MotoID) AND ([Placa] = @Original_Placa) AND ((@IsNull_Color = 1 AND [Color] IS NULL) OR ([Color] = @Original_Color)) AND ((@IsNull_Tipo = 1 AND [Tipo] IS NULL) OR ([Tipo] = @Original_Tipo)) AND ((@IsNull_Modelo = 1 AND [Modelo] IS NULL) OR ([Modelo] = @Original_Modelo)) AND ((@IsNull_Tarifa = 1 AND [Tarifa] IS NULL) OR ([Tarifa] = @Original_Tarifa)) AND ((@IsNull_Estado = 1 AND [Estado] IS NULL) OR ([Estado] = @Original_Estado)));
-SELECT MotoID, Placa, Color, Tipo, Modelo, Detalle, Tarifa, Estado FROM Motos WHERE (MotoID = @MotoID)</CommandText>
+                    <CommandText>UPDATE [Motos] SET [Placa] = @Placa, [Color] = @Color, [Tipo] = @Tipo, [Modelo] = @Modelo, [Detalle] = @Detalle, [Tarifa] = @Tarifa, [Estado] = @Estado, [Foto] = @Foto WHERE (([MotoID] = @Original_MotoID) AND ([Placa] = @Original_Placa) AND ((@IsNull_Color = 1 AND [Color] IS NULL) OR ([Color] = @Original_Color)) AND ((@IsNull_Tipo = 1 AND [Tipo] IS NULL) OR ([Tipo] = @Original_Tipo)) AND ((@IsNull_Modelo = 1 AND [Modelo] IS NULL) OR ([Modelo] = @Original_Modelo)) AND ((@IsNull_Tarifa = 1 AND [Tarifa] IS NULL) OR ([Tarifa] = @Original_Tarifa)) AND ((@IsNull_Estado = 1 AND [Estado] IS NULL) OR ([Estado] = @Original_Estado)));
+SELECT MotoID, Placa, Color, Tipo, Modelo, Detalle, Tarifa, Estado, Foto FROM Motos WHERE (MotoID = @MotoID)</CommandText>
                     <Parameters>
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Placa" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Placa" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Color" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Color" SourceColumnNullMapping="false" SourceVersion="Current" />
@@ -286,6 +287,7 @@ SELECT MotoID, Placa, Color, Tipo, Modelo, Detalle, Tarifa, Estado FROM Motos WH
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Detalle" Precision="0" ProviderType="Text" Scale="0" Size="0" SourceColumn="Detalle" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Currency" Direction="Input" ParameterName="@Tarifa" Precision="0" ProviderType="Money" Scale="0" Size="0" SourceColumn="Tarifa" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Estado" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Estado" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Binary" Direction="Input" ParameterName="@Foto" Precision="0" ProviderType="Image" Scale="0" Size="0" SourceColumn="Foto" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_MotoID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="MotoID" SourceColumnNullMapping="false" SourceVersion="Original" />
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_Placa" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Placa" SourceColumnNullMapping="false" SourceVersion="Original" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Color" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Color" SourceColumnNullMapping="true" SourceVersion="Original" />
@@ -313,17 +315,71 @@ SELECT MotoID, Placa, Color, Tipo, Modelo, Detalle, Tarifa, Estado FROM Motos WH
               <Mapping SourceColumn="Detalle" DataSetColumn="Detalle" />
               <Mapping SourceColumn="Tarifa" DataSetColumn="Tarifa" />
               <Mapping SourceColumn="Estado" DataSetColumn="Estado" />
+              <Mapping SourceColumn="Foto" DataSetColumn="Foto" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="DBAlquileresConnectionString (MySettings)" DbObjectName="DBAlquileres.dbo.Motos" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="ConsultarMotosDisponibles" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBy" GeneratorSourceName="ConsultarMotosDisponibles" GetMethodModifier="Public" GetMethodName="GetDataBy" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="ConsultarMotosDisponibles">
+              <DbSource ConnectionRef="DBAlquileresConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="AlquilarMoto" Modifier="Public" Name="AlquilarMoto" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="AlquilarMoto">
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>UPDATE Motos SET Estado='ALQUILADA'
+WHERE MotoID=@MotoID</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="MotoID" ColumnName="MotoID" DataSourceName="DBAlquileres.dbo.Motos" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@MotoID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="MotoID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+              <DbSource ConnectionRef="DBAlquileresConnectionString (MySettings)" DbObjectName="DBAlquileres.dbo.Motos" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="ConsultarMotosDisponibles" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBy1" GeneratorSourceName="ConsultarMotosDisponibles" GetMethodModifier="Public" GetMethodName="GetDataBy1" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="ConsultarMotosDisponibles">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT Color, Detalle, Estado, Modelo, MotoID, Placa, Tarifa, Tipo FROM Motos WHERE (Tipo = @Tipo) AND (Estado = 'DISPONIBLE')</CommandText>
+                    <CommandText>SELECT Color, Detalle, Estado, Foto, Modelo, MotoID, Placa, Tarifa, Tipo,Foto FROM Motos WHERE (Tipo = @Tipo) AND (Estado = 'DISPONIBLE')</CommandText>
                     <Parameters>
                       <Parameter AllowDbNull="true" AutogeneratedName="Tipo" ColumnName="Tipo" DataSourceName="DBAlquileres.dbo.Motos" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Tipo" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="Tipo" SourceColumnNullMapping="false" SourceVersion="Current" />
                     </Parameters>
                   </DbCommand>
                 </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="DBAlquileresConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="Devolver" Modifier="Public" Name="Devolver" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="Devolver">
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>UPDATE [Motos] SET [Estado] ='DISPONIBLE'
+WHERE MotoID=@MotoID</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="MotoID" ColumnName="MotoID" DataSourceName="DBAlquileres.dbo.Motos" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@MotoID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="MotoID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+              <DbSource ConnectionRef="DBAlquileresConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="EliminarMoto" Modifier="Public" Name="EliminarMoto" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="EliminarMoto">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>DELETE FROM Motos
+WHERE        (Placa = @Placa)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="Placa" ColumnName="Placa" DataSourceName="DBAlquileres.dbo.Motos" DataTypeServer="nvarchar(50)" DbType="String" Direction="Input" ParameterName="@Placa" Precision="0" ProviderType="NVarChar" Scale="0" Size="50" SourceColumn="Placa" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+              </DbSource>
+              <DbSource ConnectionRef="DBAlquileresConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="InsertarMoto" Modifier="Public" Name="InsertarMoto" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="InsertarMoto">
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>INSERT INTO Motos
+                         (Placa, Color, Tipo, Modelo, Detalle, Tarifa, Estado,Foto)
+VALUES        (@Placa,@Color,@Tipo,@Modelo,@Detalle,@Tarifa,@Estado,@Foto); 
+SELECT MotoID, Placa, Color, Tipo, Modelo, Detalle, Tarifa, Estado FROM Motos WHERE (MotoID = SCOPE_IDENTITY())</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="Placa" ColumnName="Placa" DataSourceName="DBAlquileres.dbo.Motos" DataTypeServer="nvarchar(50)" DbType="String" Direction="Input" ParameterName="@Placa" Precision="0" ProviderType="NVarChar" Scale="0" Size="50" SourceColumn="Placa" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="Color" ColumnName="Color" DataSourceName="DBAlquileres.dbo.Motos" DataTypeServer="nvarchar(50)" DbType="String" Direction="Input" ParameterName="@Color" Precision="0" ProviderType="NVarChar" Scale="0" Size="50" SourceColumn="Color" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="Tipo" ColumnName="Tipo" DataSourceName="DBAlquileres.dbo.Motos" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Tipo" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="Tipo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="Modelo" ColumnName="Modelo" DataSourceName="DBAlquileres.dbo.Motos" DataTypeServer="nvarchar(50)" DbType="String" Direction="Input" ParameterName="@Modelo" Precision="0" ProviderType="NVarChar" Scale="0" Size="50" SourceColumn="Modelo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="Detalle" ColumnName="Detalle" DataSourceName="DBAlquileres.dbo.Motos" DataTypeServer="text" DbType="AnsiString" Direction="Input" ParameterName="@Detalle" Precision="0" ProviderType="Text" Scale="0" Size="2147483647" SourceColumn="Detalle" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="Tarifa" ColumnName="Tarifa" DataSourceName="DBAlquileres.dbo.Motos" DataTypeServer="money" DbType="Currency" Direction="Input" ParameterName="@Tarifa" Precision="0" ProviderType="Money" Scale="0" Size="8" SourceColumn="Tarifa" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="Estado" ColumnName="Estado" DataSourceName="DBAlquileres.dbo.Motos" DataTypeServer="nvarchar(50)" DbType="String" Direction="Input" ParameterName="@Estado" Precision="0" ProviderType="NVarChar" Scale="0" Size="50" SourceColumn="Estado" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="Foto" ColumnName="Foto" DataSourceName="DBAlquileres.dbo.Motos" DataTypeServer="image" DbType="Binary" Direction="Input" ParameterName="@Foto" Precision="0" ProviderType="Image" Scale="0" Size="2147483647" SourceColumn="Foto" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
               </DbSource>
             </Sources>
           </TableAdapter>
@@ -372,7 +428,30 @@ SELECT TipoID, Tipo FROM TiposMotos WHERE (TipoID = @TipoID)</CommandText>
               <Mapping SourceColumn="TipoID" DataSetColumn="TipoID" />
               <Mapping SourceColumn="Tipo" DataSetColumn="Tipo" />
             </Mappings>
-            <Sources />
+            <Sources>
+              <DbSource ConnectionRef="DBAlquileresConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="AgregarTipoMoto" Modifier="Public" Name="AgregarTipoMoto" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="AgregarTipoMoto">
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>INSERT INTO [dbo].[TiposMotos] ([Tipo]) VALUES (@Tipo);
+SELECT TipoID, Tipo FROM TiposMotos WHERE (TipoID = SCOPE_IDENTITY())</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="Tipo" ColumnName="Tipo" DataSourceName="DBAlquileres.dbo.TiposMotos" DataTypeServer="nvarchar(50)" DbType="String" Direction="Input" ParameterName="@Tipo" Precision="0" ProviderType="NVarChar" Scale="0" Size="50" SourceColumn="Tipo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+              </DbSource>
+              <DbSource ConnectionRef="DBAlquileresConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="EditarTipoMoto" Modifier="Public" Name="EditarTipoMoto" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="EditarTipoMoto">
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>UPDATE TiposMotos SET Tipo = @Tipo WHERE TipoID = @TipoID</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="Tipo" ColumnName="Tipo" DataSourceName="DBAlquileres.dbo.TiposMotos" DataTypeServer="nvarchar(50)" DbType="String" Direction="Input" ParameterName="@Tipo" Precision="0" ProviderType="NVarChar" Scale="0" Size="50" SourceColumn="Tipo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="TipoID" ColumnName="TipoID" DataSourceName="DBAlquileres.dbo.TiposMotos" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@TipoID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="TipoID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </Sources>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="AlquileresTableAdapter" GeneratorDataComponentClassName="AlquileresTableAdapter" Name="Alquileres" UserDataComponentName="AlquileresTableAdapter">
             <MainSource>
@@ -460,7 +539,20 @@ SELECT AlquilerID, Fecha, HoraInicio, HoraFin, CantidadHoras, Estado, Monto, NDI
               <Mapping SourceColumn="NDI" DataSetColumn="NDI" />
               <Mapping SourceColumn="MotoID" DataSetColumn="MotoID" />
             </Mappings>
-            <Sources />
+            <Sources>
+              <DbSource ConnectionRef="DBAlquileresConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="FinalizarAlquiler" Modifier="Public" Name="FinalizarAlquiler" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FinalizarAlquiler">
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>UPDATE [dbo].[Alquileres] 
+SET [Estado]='FINALIZADO'
+WHERE [AlquilerID]=@AlquilerID</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="AlquilerID" ColumnName="AlquilerID" DataSourceName="DBAlquileres.dbo.Alquileres" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@AlquilerID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="AlquilerID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </Sources>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vAlquileresTableAdapter" GeneratorDataComponentClassName="vAlquileresTableAdapter" Name="vAlquileres" UserDataComponentName="vAlquileresTableAdapter">
             <MainSource>
@@ -501,7 +593,41 @@ FROM            Alquileres INNER JOIN
               <Mapping SourceColumn="TipoMoto" DataSetColumn="TipoMoto" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="DBAlquileresConnectionString (MySettings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="ConsultarXFecha" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBy" GeneratorSourceName="ConsultarXFecha" GetMethodModifier="Public" GetMethodName="GetDataBy" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="ConsultarXFecha">
+              <DbSource ConnectionRef="DBAlquileresConnectionString (MySettings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="ConsultarAlquilerPorNDI" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="ConsultarAlquilerPorNDI" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="ConsultarAlquilerPorNDI">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        Alquileres.AlquilerID, Alquileres.Fecha, Alquileres.HoraInicio, Alquileres.HoraFin, Alquileres.CantidadHoras, Alquileres.Monto, Alquileres.Estado, Clientes.NDI, Clientes.Nombres, Clientes.ApellidoPaterno, 
+                         Clientes.ApellidoMaterno, Nacionalidades.Nacionalidad, Motos.MotoID, Motos.Placa, Motos.Color, Motos.Tipo, Motos.Modelo, Motos.Detalle, TiposMotos.Tipo AS TipoMoto
+FROM            Alquileres INNER JOIN
+                         Clientes ON Alquileres.NDI = Clientes.NDI INNER JOIN
+                         Motos ON Alquileres.MotoID = Motos.MotoID INNER JOIN
+                         Nacionalidades ON Clientes.NacionalidadID = Nacionalidades.NacionalidadID INNER JOIN
+                         TiposMotos ON Motos.Tipo = TiposMotos.TipoID
+WHERE Clientes.NDI=@NDI</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="NDI" ColumnName="NDI" DataSourceName="DBAlquileres.dbo.Clientes" DataTypeServer="nvarchar(30)" DbType="String" Direction="Input" ParameterName="@NDI" Precision="0" ProviderType="NVarChar" Scale="0" Size="30" SourceColumn="NDI" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="DBAlquileresConnectionString (MySettings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="ConsultarAqluilerPlaca" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="ConsultarAqluilerPlaca" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="ConsultarAqluilerPlaca">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        Alquileres.AlquilerID, Alquileres.Fecha, Alquileres.HoraInicio, Alquileres.HoraFin, Alquileres.CantidadHoras, Alquileres.Monto, Alquileres.Estado, Clientes.NDI, Clientes.Nombres, Clientes.ApellidoPaterno, 
+                         Clientes.ApellidoMaterno, Nacionalidades.Nacionalidad, Motos.MotoID, Motos.Placa, Motos.Color, Motos.Tipo, Motos.Modelo, Motos.Detalle, TiposMotos.Tipo AS TipoMoto
+FROM            Alquileres INNER JOIN
+                         Clientes ON Alquileres.NDI = Clientes.NDI INNER JOIN
+                         Motos ON Alquileres.MotoID = Motos.MotoID INNER JOIN
+                         Nacionalidades ON Clientes.NacionalidadID = Nacionalidades.NacionalidadID INNER JOIN
+                         TiposMotos ON Motos.Tipo = TiposMotos.TipoID
+WHERE Motos.Placa=@Placa</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="Placa" ColumnName="Placa" DataSourceName="DBAlquileres.dbo.Motos" DataTypeServer="nvarchar(50)" DbType="String" Direction="Input" ParameterName="@Placa" Precision="0" ProviderType="NVarChar" Scale="0" Size="50" SourceColumn="Placa" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="DBAlquileresConnectionString (MySettings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="ConsultarXFecha" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBy2" GeneratorSourceName="ConsultarXFecha" GetMethodModifier="Public" GetMethodName="GetDataBy2" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="ConsultarXFecha">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        Alquileres.AlquilerID, Alquileres.Fecha, Alquileres.HoraInicio, Alquileres.HoraFin, Alquileres.CantidadHoras, Alquileres.Monto, Alquileres.Estado, Clientes.NDI, Clientes.Nombres, Clientes.ApellidoPaterno, 
@@ -541,6 +667,116 @@ WHERE        (Fecha BETWEEN @FI AND @FF)</CommandText>
               <Mapping SourceColumn="TotalPeriodo" DataSetColumn="TotalPeriodo" />
             </Mappings>
             <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="VMotosTableAdapter" GeneratorDataComponentClassName="VMotosTableAdapter" Name="VMotos" UserDataComponentName="VMotosTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DBAlquileresConnectionString (MySettings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        Motos.MotoID, Motos.Modelo, TiposMotos.Tipo, Motos.Color, Motos.Placa, Motos.Detalle, Motos.Tarifa, Motos.Estado, Motos.Foto
+FROM            Motos INNER JOIN
+                         TiposMotos ON Motos.Tipo = TiposMotos.TipoID</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Modelo" DataSetColumn="Modelo" />
+              <Mapping SourceColumn="Tipo" DataSetColumn="Tipo" />
+              <Mapping SourceColumn="Color" DataSetColumn="Color" />
+              <Mapping SourceColumn="Placa" DataSetColumn="Placa" />
+              <Mapping SourceColumn="Detalle" DataSetColumn="Detalle" />
+              <Mapping SourceColumn="Tarifa" DataSetColumn="Tarifa" />
+              <Mapping SourceColumn="Estado" DataSetColumn="Estado" />
+              <Mapping SourceColumn="MotoID" DataSetColumn="MotoID" />
+              <Mapping SourceColumn="Foto" DataSetColumn="Foto" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="DBAlquileresConnectionString (MySettings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="ConsultarMoto" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBy" GeneratorSourceName="ConsultarMoto" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="ConsultarMoto">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        Motos.Modelo, TiposMotos.Tipo, Motos.Color, Motos.Placa, Motos.Detalle, Motos.Tarifa, Motos.Estado
+FROM            Motos INNER JOIN
+                         TiposMotos ON Motos.Tipo = TiposMotos.TipoID
+WHERE        (Motos.Modelo + ' ' + TiposMotos.Tipo + ' ' + Motos.Color + ' ' + Motos.Placa + ' ' + Motos.Estado LIKE '%' + @Moto + '%')</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="Moto" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="String" Direction="Input" ParameterName="@Moto" Precision="0" Scale="0" Size="1024" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="UsuariosTableAdapter" GeneratorDataComponentClassName="UsuariosTableAdapter" Name="Usuarios" UserDataComponentName="UsuariosTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DBAlquileresConnectionString (MySettings)" DbObjectName="DBAlquileres.dbo.Usuarios" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [dbo].[Usuarios] WHERE (([idUsuarios] = @Original_idUsuarios) AND ([Usuario] = @Original_Usuario) AND ([Contraseña] = @Original_Contraseña) AND ([Acesso] = @Original_Acesso))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_idUsuarios" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="idUsuarios" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Usuario" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Usuario" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Contraseña" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Contraseña" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Acesso" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Acesso" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [dbo].[Usuarios] ([Usuario], [Contraseña], [Acesso]) VALUES (@Usuario, @Contraseña, @Acesso);
+SELECT idUsuarios, Usuario, Contraseña, Acesso FROM Usuarios WHERE (idUsuarios = SCOPE_IDENTITY())</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Usuario" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Usuario" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Contraseña" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Contraseña" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Acesso" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Acesso" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT idUsuarios, Usuario, Contraseña, Acesso FROM dbo.Usuarios</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [dbo].[Usuarios] SET [Usuario] = @Usuario, [Contraseña] = @Contraseña, [Acesso] = @Acesso WHERE (([idUsuarios] = @Original_idUsuarios) AND ([Usuario] = @Original_Usuario) AND ([Contraseña] = @Original_Contraseña) AND ([Acesso] = @Original_Acesso));
+SELECT idUsuarios, Usuario, Contraseña, Acesso FROM Usuarios WHERE (idUsuarios = @idUsuarios)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Usuario" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Usuario" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Contraseña" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Contraseña" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Acesso" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Acesso" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_idUsuarios" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="idUsuarios" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Usuario" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Usuario" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Contraseña" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Contraseña" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Acesso" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Acesso" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="idUsuarios" ColumnName="idUsuarios" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@idUsuarios" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="idUsuarios" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="idUsuarios" DataSetColumn="idUsuarios" />
+              <Mapping SourceColumn="Usuario" DataSetColumn="Usuario" />
+              <Mapping SourceColumn="Contraseña" DataSetColumn="Contraseña" />
+              <Mapping SourceColumn="Acesso" DataSetColumn="Acesso" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="DBAlquileresConnectionString (MySettings)" DbObjectName="DBAlquileres.dbo.Login" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Login" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="Login" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="Login">
+                <SelectCommand>
+                  <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                    <CommandText>dbo.Login</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@Usuario" Precision="0" ProviderType="VarChar" Scale="0" Size="15" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@Contraseña" Precision="0" ProviderType="VarChar" Scale="0" Size="15" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
           </TableAdapter>
         </Tables>
         <Sources />
@@ -695,6 +931,7 @@ WHERE        (Fecha BETWEEN @FI AND @FF)</CommandText>
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="Foto" msprop:Generator_ColumnVarNameInTable="columnFoto" msprop:Generator_ColumnPropNameInRow="Foto" msprop:Generator_ColumnPropNameInTable="FotoColumn" msprop:Generator_UserColumnName="Foto" type="xs:base64Binary" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -837,6 +1074,85 @@ WHERE        (Fecha BETWEEN @FI AND @FF)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="VMotos" msprop:Generator_TableClassName="VMotosDataTable" msprop:Generator_TableVarName="tableVMotos" msprop:Generator_TablePropName="VMotos" msprop:Generator_RowDeletingName="VMotosRowDeleting" msprop:Generator_RowChangingName="VMotosRowChanging" msprop:Generator_RowEvHandlerName="VMotosRowChangeEventHandler" msprop:Generator_RowDeletedName="VMotosRowDeleted" msprop:Generator_UserTableName="VMotos" msprop:Generator_RowChangedName="VMotosRowChanged" msprop:Generator_RowEvArgName="VMotosRowChangeEvent" msprop:Generator_RowClassName="VMotosRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Modelo" msprop:Generator_ColumnVarNameInTable="columnModelo" msprop:Generator_ColumnPropNameInRow="Modelo" msprop:Generator_ColumnPropNameInTable="ModeloColumn" msprop:Generator_UserColumnName="Modelo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Tipo" msprop:Generator_ColumnVarNameInTable="columnTipo" msprop:Generator_ColumnPropNameInRow="Tipo" msprop:Generator_ColumnPropNameInTable="TipoColumn" msprop:Generator_UserColumnName="Tipo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Color" msprop:Generator_ColumnVarNameInTable="columnColor" msprop:Generator_ColumnPropNameInRow="Color" msprop:Generator_ColumnPropNameInTable="ColorColumn" msprop:Generator_UserColumnName="Color" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Placa" msprop:Generator_ColumnVarNameInTable="columnPlaca" msprop:Generator_ColumnPropNameInRow="Placa" msprop:Generator_ColumnPropNameInTable="PlacaColumn" msprop:Generator_UserColumnName="Placa">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Detalle" msprop:Generator_ColumnVarNameInTable="columnDetalle" msprop:Generator_ColumnPropNameInRow="Detalle" msprop:Generator_ColumnPropNameInTable="DetalleColumn" msprop:Generator_UserColumnName="Detalle" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Tarifa" msprop:Generator_ColumnVarNameInTable="columnTarifa" msprop:Generator_ColumnPropNameInRow="Tarifa" msprop:Generator_ColumnPropNameInTable="TarifaColumn" msprop:Generator_UserColumnName="Tarifa" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Estado" msprop:Generator_ColumnVarNameInTable="columnEstado" msprop:Generator_ColumnPropNameInRow="Estado" msprop:Generator_ColumnPropNameInTable="EstadoColumn" msprop:Generator_UserColumnName="Estado" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MotoID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnMotoID" msprop:Generator_ColumnPropNameInRow="MotoID" msprop:Generator_ColumnPropNameInTable="MotoIDColumn" msprop:Generator_UserColumnName="MotoID" type="xs:int" />
+              <xs:element name="Foto" msprop:Generator_ColumnVarNameInTable="columnFoto" msprop:Generator_ColumnPropNameInRow="Foto" msprop:Generator_ColumnPropNameInTable="FotoColumn" msprop:Generator_UserColumnName="Foto" type="xs:base64Binary" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Usuarios" msprop:Generator_TableClassName="UsuariosDataTable" msprop:Generator_TableVarName="tableUsuarios" msprop:Generator_TablePropName="Usuarios" msprop:Generator_RowDeletingName="UsuariosRowDeleting" msprop:Generator_RowChangingName="UsuariosRowChanging" msprop:Generator_RowEvHandlerName="UsuariosRowChangeEventHandler" msprop:Generator_RowDeletedName="UsuariosRowDeleted" msprop:Generator_UserTableName="Usuarios" msprop:Generator_RowChangedName="UsuariosRowChanged" msprop:Generator_RowEvArgName="UsuariosRowChangeEvent" msprop:Generator_RowClassName="UsuariosRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="idUsuarios" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnidUsuarios" msprop:Generator_ColumnPropNameInRow="idUsuarios" msprop:Generator_ColumnPropNameInTable="idUsuariosColumn" msprop:Generator_UserColumnName="idUsuarios" type="xs:int" />
+              <xs:element name="Usuario" msprop:Generator_ColumnVarNameInTable="columnUsuario" msprop:Generator_ColumnPropNameInRow="Usuario" msprop:Generator_ColumnPropNameInTable="UsuarioColumn" msprop:Generator_UserColumnName="Usuario">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Contraseña" msprop:Generator_ColumnVarNameInTable="columnContraseña" msprop:Generator_ColumnPropNameInRow="Contraseña" msprop:Generator_ColumnPropNameInTable="ContraseñaColumn" msprop:Generator_UserColumnName="Contraseña">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Acesso" msprop:Generator_ColumnVarNameInTable="columnAcesso" msprop:Generator_ColumnPropNameInRow="Acesso" msprop:Generator_ColumnPropNameInTable="AcessoColumn" msprop:Generator_UserColumnName="Acesso">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
@@ -863,6 +1179,14 @@ WHERE        (Fecha BETWEEN @FI AND @FF)</CommandText>
       <xs:selector xpath=".//mstns:Alquileres" />
       <xs:field xpath="mstns:AlquilerID" />
     </xs:unique>
+    <xs:unique name="VMotos_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:VMotos" />
+      <xs:field xpath="mstns:MotoID" />
+    </xs:unique>
+    <xs:unique name="Usuarios_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Usuarios" />
+      <xs:field xpath="mstns:idUsuarios" />
+    </xs:unique>
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
@@ -872,6 +1196,7 @@ WHERE        (Fecha BETWEEN @FI AND @FF)</CommandText>
       <msdata:Relationship name="FK_Alquileres_Motos" msdata:parent="Motos" msdata:child="Alquileres" msdata:parentkey="MotoID" msdata:childkey="MotoID" msprop:Generator_UserChildTable="Alquileres" msprop:Generator_ChildPropName="GetAlquileresRows" msprop:Generator_UserRelationName="FK_Alquileres_Motos" msprop:Generator_ParentPropName="MotosRow" msprop:Generator_RelationVarName="relationFK_Alquileres_Motos" msprop:Generator_UserParentTable="Motos" />
       <msdata:Relationship name="FK_Alquileres_Clientes1" msdata:parent="Clientes" msdata:child="vAlquileres" msdata:parentkey="NDI" msdata:childkey="NDI" msprop:Generator_UserChildTable="vAlquileres" msprop:Generator_ChildPropName="GetvAlquileresRows" msprop:Generator_UserRelationName="FK_Alquileres_Clientes1" msprop:Generator_ParentPropName="ClientesRow" msprop:Generator_RelationVarName="relationFK_Alquileres_Clientes1" msprop:Generator_UserParentTable="Clientes" />
       <msdata:Relationship name="FK_Alquileres_Motos1" msdata:parent="Motos" msdata:child="vAlquileres" msdata:parentkey="MotoID" msdata:childkey="MotoID" msprop:Generator_UserChildTable="vAlquileres" msprop:Generator_ChildPropName="GetvAlquileresRows" msprop:Generator_UserRelationName="FK_Alquileres_Motos1" msprop:Generator_ParentPropName="MotosRow" msprop:Generator_RelationVarName="relationFK_Alquileres_Motos1" msprop:Generator_UserParentTable="Motos" />
+      <msdata:Relationship name="FK_Alquileres_Motos2" msdata:parent="VMotos" msdata:child="Alquileres" msdata:parentkey="MotoID" msdata:childkey="MotoID" msprop:Generator_UserChildTable="Alquileres" msprop:Generator_ChildPropName="GetAlquileresRows" msprop:Generator_UserRelationName="FK_Alquileres_Motos2" msprop:Generator_RelationVarName="relationFK_Alquileres_Motos2" msprop:Generator_UserParentTable="VMotos" msprop:Generator_ParentPropName="VMotosRow" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

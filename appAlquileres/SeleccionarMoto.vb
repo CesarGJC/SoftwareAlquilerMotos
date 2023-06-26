@@ -2,6 +2,8 @@
     Dim Tipo As String
     Dim Modelo As String
     Dim Placa As String
+    Dim Tarifa As Double
+    Dim idMoto As String
     Private Sub btnCerrar_Click(sender As Object, e As EventArgs) Handles btnCerrar.Click
         Me.Close()
     End Sub
@@ -42,6 +44,9 @@
             f.Modelo = Modelo
             f.Tipo = Tipo
             f.Placa = Placa
+            f.Tarifa = Tarifa
+            f.idMoto = idMoto
+
         Catch ex As Exception
 
         End Try
@@ -54,6 +59,8 @@
             Tipo = DataGridView1.Item("TipoDataGridViewTextBoxColumn", DataGridView1.CurrentRow.Index).Value
             Modelo = DataGridView1.Item("ModeloDataGridViewTextBoxColumn", DataGridView1.CurrentRow.Index).Value
             Placa = DataGridView1.Item("PlacaDataGridViewTextBoxColumn", DataGridView1.CurrentRow.Index).Value
+            Tarifa = DataGridView1.Item("TarifaDataGridViewTextBoxColumn", DataGridView1.CurrentRow.Index).Value
+            idMoto = DataGridView1.Item("MotoIDDataGridViewTextBoxColumn", DataGridView1.CurrentRow.Index).Value
 
             MostrarMoto(RegistrarAlquiler)
             Close()

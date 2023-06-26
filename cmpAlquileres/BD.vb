@@ -1,4 +1,14 @@
 ﻿Partial Class BD
+    Partial Public Class VMotosDataTable
+        Private Sub VMotosDataTable_VMotosRowChanging(sender As Object, e As VMotosRowChangeEvent) Handles Me.VMotosRowChanging
+
+        End Sub
+
+    End Class
+
+    Partial Public Class ClientesDataTable
+    End Class
+
     Partial Public Class vMotosDataTable
     End Class
 
@@ -23,5 +33,15 @@ End Namespace
 
 Namespace BDTableAdapters
     Partial Public Class MotosTableAdapter
+    End Class
+End Namespace
+
+Namespace BDTableAdapters
+    Partial Public Class TotalPeriodoTableAdapter
+    End Class
+End Namespace
+
+Namespace BDTableAdapters
+    Partial Public Class VMotosTableAdapter
     End Class
 End Namespace
